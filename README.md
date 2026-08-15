@@ -22,7 +22,6 @@ occasional teacher / compulsive reader
   explained with a good dataset.
 
 ────────────────────────────────────────
-
 <!-- READING-LOG:START -->
 <pre align="center">
 +----------------------------------------+
