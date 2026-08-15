@@ -52,7 +52,7 @@ currently curious about
 
 <div align="center">
   <a href="https://www.goodreads.com/user/show/192787859-nattarkani-murugan">
-    view my goodreads profile ↗↗</a>
+    view my goodreads profile ↗</a>
 </div>
 
 <pre align="center">
