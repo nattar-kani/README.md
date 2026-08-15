@@ -53,7 +53,7 @@ currently curious about
 ────────────────────────────────────────
 
 ┌──────────────────────────────────────┐
-│ CARD 01 / WORKING WITH               │
+│ WORKING WITH                         │
 ├──────────────────────────────────────┤
 │                                      │
 │  data          python · sql          │
@@ -66,7 +66,7 @@ currently curious about
 └──────────────────────────────────────┘
 
 ┌──────────────────────────────────────┐
-│ CARD 02 / CURRENTLY EXPLORING        │
+│ CURRENTLY EXPLORING                  │
 ├──────────────────────────────────────┤
 │                                      │
 │  foundations   machine learning      │
