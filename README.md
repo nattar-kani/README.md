@@ -45,3 +45,38 @@ currently curious about
 +----------------------------------------+
 </pre>
 <!-- READING-LOG:END -->
+<br>
+
+<pre align="center">
+────────────────────────────────────────
+                  TOOLBOX
+────────────────────────────────────────
+
+┌──────────────────────────────────────┐
+│ CARD 01 / WORKING WITH               │
+├──────────────────────────────────────┤
+│                                      │
+│  data          python · sql          │
+│  analytics     dax · power query     │
+│  visuals       power bi · tableau    │
+│  spreadsheets  excel                 │
+│  building      fastapi · streamlit   │
+│                                      │
+│  status         ■ ■ ■ ■ ■  in use    │
+└──────────────────────────────────────┘
+
+┌──────────────────────────────────────┐
+│ CARD 02 / CURRENTLY EXPLORING        │
+├──────────────────────────────────────┤
+│                                      │
+│  foundations   machine learning      │
+│  gen ai        prompts · embeddings  │
+│  knowledge     rag · vector search   │
+│  agents        tools · orchestration │
+│  direction     ai engineering        │
+│                                      │
+│  status         ■ ■ ■ □ □  learning  │
+└──────────────────────────────────────┘
+
+────────────────────────────────────────
+</pre>
