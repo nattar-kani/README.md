@@ -2,6 +2,7 @@
   <img
     src="./assets/seal.png"
     alt="nattarkani personal seal"
+    size=120>
 ─────────────────
 
 hello, i'm nattarkani.
