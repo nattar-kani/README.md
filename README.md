@@ -1,9 +1,9 @@
-<p align="center">
-  <img
-    src="./assets/seal.png"
-    alt="nattarkani personal seal"
-    size=120>
-─────────────────
+<div align="center">
+  ./assets/seal.png
+</div>
+
+<pre align="center">
+────────────────────────────────────────
 
 hello, i'm nattarkani.
 
