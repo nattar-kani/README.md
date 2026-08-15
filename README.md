@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="./assets/seal.png"
-       alt="nattarkani personal seal"
-       width="150">
-</p>
+  <img
+    src="./assets/seal.png"
+    alt="nattarkani personal seal"
+─────────────────
 
-<pre align="ani.
+hello, i'm nattarkani.
 
 data analyst / aspiring ai engineer
 occasional teacher / compulsive reader
