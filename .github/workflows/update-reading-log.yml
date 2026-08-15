@@ -1,0 +1,39 @@
+name: Update dynamic reading log
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 0 * * *"
+
+permissions:
+  conten*s: write
+
+jobs:
+  update-reading-l*g:
+    runs-on: ubuntu-latest
+
+   *steps:
+      - name: Check out rep*sitory
+        uses: actions/check*ut@v4
+
+      - name: Set up Python*        uses: actions/setup-python*v5
+        with:
+          python-*ersion: "3.12"
+
+      - name: Upda*e reading log
+        run: python *cripts/update_reading_log.py
+
+    * - name: Commit README changes
+   *    shell: bash
+        run: |
+   *      if git diff --quiet README.m*; then
+            echo "No README*changes."
+            exit 0
+     *    fi
+
+          git config user.*ame "github-actions[bot]"
+        * git config user.email "41898282+g*thub-actions[bot]@users.noreply.gi*hub.com"
+
+          git add README*md
+          git commit -m "Update*dynamic reading log"
+          git*push
