@@ -1,22 +1,24 @@
 <pre align="center">
 ────────────────────────────────────────
 
-hello, i'm nattarkani. 
-  
-i work somewhere between data, climate, technology and education. 
-  
-i like turning messy things into useful things — 
-datasets into stories, ideas into things people 
-can actually use, and complicated concepts into 
-something that makes sense. 
-  
-when i'm not doing that, 
-i'm probably reading a book. 
-  
-currently curious about 
-→ data & analytics 
-→ ai & automation 
-→ climate & sustainability 
+hello, i'm nattarkani.
+
+i work somewhere between data, climate,
+technology and education.
+
+i like turning messy things into useful things:
+datasets into stories, ideas into things people
+can actually use, and complicated concepts into
+something that makes sense.
+
+when i'm not doing that,
+i'm probably reading a book.
+
+currently curious about
+
+→ data & analytics
+→ ai & automation
+→ climate & sustainability
 
 ────────────────────────────────────────
 </pre>
@@ -34,6 +36,8 @@ currently curious about
   explained with a good dataset.
 
 ────────────────────────────────────────
+</pre>
+
 <!-- READING-LOG:START -->
 <pre align="center">
 +----------------------------------------+
@@ -45,15 +49,17 @@ currently curious about
 +----------------------------------------+
 </pre>
 <!-- READING-LOG:END -->
+
 <div align="center">
-<a href="https://www.goodreads.com/user/show/192787859-nattarkani-murugan">goodreads ↗</a>
+  <a href="https://www.goodreads.com/user/show/192787859-nattarkani-murugan">goodreads ↗</a>
 </div>
+
 <pre align="center">
 ────────────────────────────────────────
-               TOOLBOX
+                 TOOLBOX
 ────────────────────────────────────────
 ┌──────────────────────────────────────┐
-│ WORKING WITH                         │
+│             WORKING WITH             │
 ├──────────────────────────────────────┤
 │                                      │
 │  data          python · sql          │
@@ -62,11 +68,11 @@ currently curious about
 │  spreadsheets  excel                 │
 │  building      fastapi · streamlit   │
 │                                      │
-│  status         ■ ■ ■ ■ ■  in use    │
+│  status        ■ ■ ■ ■ ■  in use     │
 └──────────────────────────────────────┘
 
 ┌──────────────────────────────────────┐
-│ CURRENTLY EXPLORING                  │
+│          CURRENTLY EXPLORING         │
 ├──────────────────────────────────────┤
 │                                      │
 │  foundations   machine learning      │
@@ -75,8 +81,7 @@ currently curious about
 │  agents        tools · orchestration │
 │  direction     ai engineering        │
 │                                      │
-│  status         ■ ■ ■ □ □  learning  │
+│  status        ■ ■ ■ □ □  learning   │
 └──────────────────────────────────────┘
-
 ────────────────────────────────────────
 </pre>
