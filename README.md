@@ -51,7 +51,8 @@ currently curious about
 <!-- READING-LOG:END -->
 
 <div align="center">
-  <a href="https://www.goodreads.com/user/show/192787859-nattarkani-murugan">goodreads ↗</a>
+  <a href="https://www.goodreads.com/user/show/192787859-nattarkani-murugan">
+    view my goodreads profile ↗↗</a>
 </div>
 
 <pre align="center">
