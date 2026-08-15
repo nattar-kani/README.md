@@ -1,9 +1,3 @@
-<p align="center">
-2
-<img src="./assets/seal.png"
-width="110"
-
-
 <pre align="center">
 ────────────────────────────────────────
 
