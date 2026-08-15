@@ -28,7 +28,8 @@ occasional teacher / compulsive reader
 +----------------------------------------+
 |              READING LOG               |
 |                                        |
-|  loading reading data...               |
+|  2026             13 books             |
+|  all time         79 books             |
 |                                        |
 +----------------------------------------+
 </pre>
