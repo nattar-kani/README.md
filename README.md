@@ -17,10 +17,6 @@ occasional teacher / compulsive reader
 
   data • ai • dashboards • learning
 
-&gt; currently reading
-
-  piranesi
-
 &gt; currently wondering
 
   how much of the world can be
