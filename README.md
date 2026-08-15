@@ -22,14 +22,12 @@ occasional teacher / compulsive reader
   explained with a good dataset.
 
 ────────────────────────────────────────
-</pre>
-
 <!-- READING-LOG:START -->
 <pre align="center">
 ╭────────────────────────────────────────╮
 │              READING LOG               │
 │                                        │
-│  loading reading data...               │
+│        loading reading data...         │
 │                                        │
 ╰────────────────────────────────────────╯
 </pre>
