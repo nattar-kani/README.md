@@ -1,6 +1,8 @@
 <p align="center">
-  ./assets/seal.png
-</p>>
+2
+<img src="./assets/seal.png"
+width="110"
+
 
 <pre align="center">
 ────────────────────────────────────────
