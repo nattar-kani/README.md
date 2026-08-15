@@ -7,33 +7,31 @@ on:
 
 permissions:
   contents: write
+*jobs:
+  update-reading-log:
+    ru*s-on: ubuntu-latest
 
-jobs:
-  update-reading-l*g:
-    runs-on: ubuntu-latest
+    steps:
+  *   - name: Check out repository
+  *     uses: actions/checkout@v4
 
-   *steps:
-      - name: Check out rep*sitory
-        uses: actions/check*ut@v4
+  *   - name: Set up Python
+        u*es: actions/setup-python@v5
+      * with:
+          python-version: "*.12"
 
-      - name: Set up Python*        uses: actions/setup-python*v5
-        with:
-          python-version: "3.12"
+      - name: Update reading*log
+        run: python scripts/up*ate_reading_log.py
 
-      - name: Upda*e reading log
-        run: python *cripts/update_reading_log.py
-
-    * - name: Commit README changes
-   *    shell: bash
+      - name: *ommit README changes
+        shell* bash
         run: |
-   *      if git diff --quiet README.m*; then
-            echo "No README*changes."
-            exit 0
-     *    fi
+          if *it diff --quiet README.md; then
+  *         echo "No README changes."*            exit 0
+          fi
 
-          git config user.*ame "github-actions[bot]"
-        * git config user.email "41898282+g*thub-actions[bot]@users.noreply.gi*hub.com"
-
-          git add README*md
-          git commit -m "Update*dynamic reading log"
-          git*push
+ *        git config user.name "gith*b-actions[bot]"
+          git conf*g user.email "41898282+github-acti*ns[bot]@users.noreply.github.com"
+*          git add README.md
+      *   git commit -m "Update dynamic r*ading log"
+          git push
