@@ -10,6 +10,8 @@ occasional teacher / compulsive reader
 </pre>
 
 <pre align="center">
+────────────────────────────────────────
+
 &gt; currently working on
 
   data • ai • dashboards • crochet
