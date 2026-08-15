@@ -25,9 +25,17 @@ occasional teacher / compulsive reader
 
 <!-- READING-LOG:START -->
 <pre align="center">
-READING LOG
-────────────────────────
-this year       13 books
-all time        79 books
++----------------------------------------+
+|              READING LOG               |
+|                                        |
+|  loading reading data...               |
+|                                        |
++----------------------------------------+
 </pre>
 <!-- READING-LOG:END -->
+
+<p align="center">
+  <a href="https://www.goodreads.com/user/show/192787859-nattarkani-murugan">
+    goodreads ↗
+  </a>
+</p>
