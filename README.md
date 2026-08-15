@@ -28,6 +28,6 @@ occasional teacher / compulsive reader
 READING LOG
 ────────────────────────
 this year       13 books
-all time        47 books
+all time        79 books
 </pre>
 <!-- READING-LOG:END -->
