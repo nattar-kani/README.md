@@ -1,0 +1,30 @@
+<p align="center">
+  <img src="./assets/seal.png"
+       alt="nattarkani personal seal"
+       width="150">
+</p>
+
+<pre align="ani.
+
+data analyst / aspiring ai engineer
+occasional teacher / compulsive reader
+
+────────────────────────────────────────
+</pre>
+
+<pre>
+&gt; currently working on
+
+  data • ai • dashboards • learning
+
+&gt; currently reading
+
+  piranesi
+
+&gt; currently wondering
+
+  how much of the world can be
+  explained with a good dataset.
+
+────────────────────────────────────────
+</pre>
