@@ -22,26 +22,12 @@ occasional teacher / compulsive reader
   explained with a good dataset.
 
 ────────────────────────────────────────
+
 <!-- READING-LOG:START -->
 <pre align="center">
-+----------------------------------------+
-|              READING LOG               |
-|                                        |
-|  year             2026                 |
-|  books read       13                   |
-|  pages read       unavailable          |
-|  favourite        A Man Called Ove     |
-|  currently        between books        |
-|                                        |
-|  progress         # # # . . . . . . .  |
-|  goal             13 / 50 books        |
-|                                        |
-+----------------------------------------+
+READING LOG
+────────────────────────
+this year       13 books
+all time        47 books
 </pre>
 <!-- READING-LOG:END -->
-
-<p align="center">
-  <a href="https://www.goodreads.com/user/show/192787859-nattarkani-murugan">
-    goodreads ↗
-  </a>
-</p>
