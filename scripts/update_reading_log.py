@@ -53,7 +53,8 @@ def parse_number(value: str) -> int:
     return int(match.group())
 
 
-def parse_date(value: str) -> Optionalif not value:
+def parse_date(value: str) -> Optional[datetime]:
+    if not value:
         return None
 
     formats = [
