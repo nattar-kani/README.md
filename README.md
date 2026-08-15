@@ -31,9 +31,11 @@ currently curious about
   data • ai • dashboards • crochet
 
 &gt; currently wondering
-
-  how much of the world can be
-  explained with a good dataset.
+  
+  how many books can be read,
+  how many rows can be crocheted,
+  and how much the climate can change
+  before the year ends.
 
 ────────────────────────────────────────
 </pre>
