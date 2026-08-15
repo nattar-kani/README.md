@@ -14,6 +14,7 @@ from typing import Optional
 
 GOODREADS_USER_ID = "192787859"
 ANNUAL_GOAL = 50
+
 README_PATH = Path("README.md")
 
 START_MARKER = "<!-- READING-LOG:START -->"
@@ -21,11 +22,6 @@ END_MARKER = "<!-- READING-LOG:END -->"
 
 BASE_FEED_URL = (
     f"https://www.goodreads.com/review/list_rss/{GOODREADS_USER_ID}"
-)
-
-USER_AGENT = (
-    "Mozilla/5.0 GitHub-Profile-Reading-Log/1.0 "
-    "(https://github.com/nattar-kani)"
 )
 
 
@@ -39,7 +35,7 @@ class Book:
     link: str
 
 
-def text_of(item: ET.Element, tag: str) -> str:
+def get_text(item: ET.Element, tag: str) -> str:
     element = item.find(tag)
 
     if element is None or element.text is None:
@@ -48,25 +44,26 @@ def text_of(item: ET.Element, tag: str) -> str:
     return element.text.strip()
 
 
-def parse_integer(value: str) -> int:
+def parse_number(value: str) -> int:
     match = re.search(r"\d+", value.replace(",", ""))
 
-    if not match:
+    if match is None:
         return 0
 
     return int(match.group())
 
 
-def parse_date(value: str) -> Optional[datetime]:
-    if not value:
+def parse_date(value: str) -> Optionalif not value:
         return None
 
-    formats = (
+    formats = [
         "%a, %d %b %Y %H:%M:%S %z",
         "%a, %d %b %Y %H:%M:%S %Z",
-        "%Y-%m-%d",
         "%a %b %d %H:%M:%S %z %Y",
-ate_format in formats:
+        "%Y-%m-%d",
+    ]
+
+    for date_format in formats:
         try:
             return datetime.strptime(value.strip(), date_format)
         except ValueError:
@@ -90,12 +87,8 @@ def fetch_feed(shelf: str) -> bytes:
     request = urllib.request.Request(
         url,
         headers={
-            "User-Agent": USER_AGENT,
-            "Accept": (
-                "application/rss+xml,"
-                "application/xml;q=0.9,"
-                "text/xml;q=0.8"
-            ),
+            "User-Agent": "Mozilla/5.0 GitHub-Reading-Log/1.0",
+            "Accept": "application/rss+xml, application/xml, text/xml",
         },
     )
 
@@ -103,60 +96,99 @@ def fetch_feed(shelf: str) -> bytes:
         return response.read()
 
 
+def find_first_text(item: ET.Element, tags: list[str]) -> str:
+    for tag in tags:
+        value = get_text(item, tag)
+
+        if value:
+            return value
+
+    return ""
+
+
+def parse_pages(item: ET.Element) -> int:
+    direct_value = find_first_text(
+        item,
+        [
+            "book_num_pages",
+            "num_pages",
+            "book_pages",
+        ],
+    )
+
+    pages = parse_number(direct_value)
+
+    if pages:
+        return pages
+
+    description = get_text(item, "description")
+
+    patterns = [
+        r"num_pages[^0-9]{0,40}(\d+)",
+        r"number of pages[^0-9]{0,40}(\d+)",
+        r"pages[^0-9]{0,20}(\d+)",
+    ]
+
+    for pattern in patterns:
+        match = re.search(
+            pattern,
+            description,
+            flags=re.IGNORECASE,
+        )
+
+        if match:
+            return int(match.group(1))
+
+    return 0
+
+
 def parse_books(xml_data: bytes) -> listroot = ET.fromstring(xml_data)
     books: list[Book] = []
 
     for item in root.findall(".//item"):
-        title = (
-            text_of(item, "book_title")
-            or text_of(item, "title")
-            or "untitled"
+        title = find_first_text(
+            item,
+            [
+                "book_title",
+                "title",
+            ],
         )
 
-        author = (
-            text_of(item, "author_name")
-            or text_of(item, "book_author")
-            or "unknown author"
+        author = find_first_text(
+            item,
+            [
+                "author_name",
+                "book_author",
+            ],
         )
 
-        pages = parse_integer(
-            text_of(item, "book")
-            or text_of(item, "num_pages")
-            or text_of(item, "book_num_pages")
-        )
-
-        if pages == 0:
-            description = text_of(item, "description")
-
-            page_match = re.search(
-                r"(?:num_pages|pages)[^0-9]{0,30}(\d+)",
-                description,
-                flags=re.IGNORECASE,
+        rating = parse_number(
+            find_first_text(
+                item,
+                [
+                    "user_rating",
+                    "rating",
+                ],
             )
-
-            if page_match:
-                pages = int(page_match.group(1))
-
-        rating = parse_integer(
-            text_of(item, "user_rating")
-            or text_of(item, "rating")
         )
 
         read_at = parse_date(
-            text_of(item, "user_read_at")
-            or text_of(item, "read_at")
+            find_first_text(
+                item,
+                [
+                    "user_read_at",
+                    "read_at",
+                ],
+            )
         )
 
-        link = (
-            text_of(item, "link")
-            or "https://www.goodreads.com/"
-        )
+        link = get_text(item, "link")
 
         books.append(
             Book(
-                title=title,
-                author=author,
-                pages=pages,
+                title=title or "untitled",
+                author=author or "unknown author",
+                pages=parse_pages(item),
                 rating=rating,
                 read_at=read_at,
                 link=link,
@@ -167,119 +199,122 @@ def parse_books(xml_data: bytes) -> listroot = ET.fromstring(xml_data)
 
 
 def shorten(value: str, maximum: int = 20) -> str:
-    value = html.unescape(value).strip()
+    cleaned = html.unescape(value).strip()
 
-    if len(value) <= maximum:
-        return value
+    if len(cleaned) <= maximum:
+        return cleaned
 
-    return value[: maximum - 1].rstrip() + "…"
+    return cleaned[: maximum - 1].rstrip() + "…"
 
 
-def pad_row(label: str, value: str) -> str:
+def box_row(label: str, value: str) -> str:
     content = f"  {label:<17}{value}"
     return f"│{content:<40}│"
 
 
-def progress_bar(completed: int, goal: int, units: int = 12) -> str:
+def progress_bar(completed: int, goal: int) -> str:
+    units = 10
+
     if goal <= 0:
-        return "▱ " * units
+        filled = 0
+    else:
+        filled = round(min(completed / goal, 1) * units)
 
-    ratio = min(completed / goal, 1)
-    filled = round(ratio * units)
-
-    symbols = ["▰"] * filled + ["▱"] * (units - filled)
+    symbols = ["■"] * filled + ["□"] * (units - filled)
 
     return " ".join(symbols)
 
 
-def select_favourite(books: list[Book]) -> Optional[Book]:
-    rated_books = [book for book in booksing > 0]
+def choose_favourite(books: list[Book]) -> Optionalrated_books = [
+        book
+        for book in books
+        if book.rating > 0
+    ]
 
     if not rated_books:
         return None
 
-    minimum_date = datetime.min.replace(tzinfo=None)
-
-    def sort_key(book: Book):
-        read_at = book.read_at
-
-        if read_at and read_at.tzinfo is not None:
-            read_at = read_at.replace(tzinfo=None)
-
-        return (
-            book.rating,
-            read_at or minimum_date,
+    def sorting_key(book: Book) -> tuple[int, str]:
+        read_date = (
+            book.read_at.isoformat()
+            if book.read_at is not None
+            else ""
         )
 
-    return max(rated_books, key=sort_key)
+        return book.rating, read_date
+
+    return max(rated_books, key=sorting_key)
 
 
-def currently_reading_text(books: list[Book]) -> str:
+def current_book_text(books: list[Book]) -> str:
     if not books:
         return "between books"
 
     if len(books) == 1:
         return shorten(books[0].title)
 
-    first_title = shorten(books[0].title, 17)
-    remaining = len(books) - 1
+    first_book = shorten(books[0].title, 16)
+    additional_books = len(books) - 1
 
-    return f"{first_title} +{remaining}"
+    return f"{first_book} +{additional_books}"
 
 
 def build_reading_log(
     read_books: list[Book],
     current_books: list[Book],
 ) -> str:
-    year = datetime.now().year
+    current_year = datetime.now().year
 
-    books_this_year = [
+    yearly_books = [
         book
         for book in read_books
         if book.read_at is not None
-        and book.read_at.year == year
+        and book.read_at.year == current_year
     ]
 
-    books_this_year.sort(
+    yearly_books.sort(
         key=lambda book: book.read_at or datetime.min,
         reverse=True,
     )
 
-    number_read = len(books_this_year)
-
-    known_pages = [
+    books_read = len(yearly_books)
+    pages_read = sum(
         book.pages
-        for book in books_this_year
+        for book in yearly_books
         if book.pages > 0
-    ]
+    )
 
-    total_pages = sum(known_pages)
-    favourite = select_favourite(books_this_year)
+    favourite = choose_favourite(yearly_books)
 
     favourite_title = (
         shorten(favourite.title)
-        if favourite
+        if favourite is not None
         else "not rated yet"
     )
 
-    current_title = currently_reading_text(current_books)
-    bar = progress_bar(number_read, ANNUAL_GOAL)
+    current_title = current_book_text(current_books)
 
     rows = [
         "╭────────────────────────────────────────╮",
         "│              READING LOG               │",
         "│                                        │",
-        pad_row("year", str(year)),
-        pad_row("books read", str(number_read)),
-        pad_row(
+        box_row("year", str(current_year)),
+        box_row("books read", str(books_read)),
+        box_row(
             "pages read",
-            f"{total_pages:,}" if known_pages else "unavailable",
+            f"{pages_read:,}" if pages_read else "unavailable",
         ),
-        pad_row("favourite", favourite_title),
-        pad_row("currently", current_title),
+        box_row("favourite", favourite_title),
+        box_row("currently", current_title),
         "│                                        │",
-        pad_row("progress", bar),
-        pad_row("goal", f"{number_read} / {ANNUAL_GOAL} books"),
+        box_row(
+            "progress",
+            progress_bar(books_read, ANNUAL_GOAL),
+        ),
+        box_row(
+            "goal",
+            f"{books_read} / {ANNUAL_GOAL} books",
+        ),
         "│                                        │",
         "╰────────────────────────────────────────╯",
     ]
@@ -295,7 +330,7 @@ def build_reading_log(
     )
 
 
-def update_readme(new_section: str) -> None:
+def update_readme(new_section: str) -> bool:
     if not README_PATH.exists():
         raise FileNotFoundError("README.md was not found.")
 
@@ -308,48 +343,67 @@ def update_readme(new_section: str) -> None:
         flags=re.DOTALL,
     )
 
-    if not pattern.search(readme):
+    if pattern.search(readme) is None:
         raise RuntimeError(
-            "Reading log markers were not found in README.md."
+            "READING-LOG markers were not found in README.md."
         )
 
     updated_readme = pattern.sub(
-        lambda _: new_section,
+        lambda match: new_section,
         readme,
         count=1,
     )
 
-    README_PATH.write_text(updated_readme, encoding="utf-8")
+    if updated_readme == readme:
+        return False
+
+    README_PATH.write_text(
+        updated_readme,
+        encoding="utf-8",
+    )
+
+    return True
 
 
 def main() -> int:
     try:
-        read_feed = fetch_feed("read")
-        current_feed = fetch_feed("currently-reading")
+        print("Fetching Goodreads read shelf...")
+        read_xml = fetch_feed("read")
 
-        read_books = parse_books(read_feed)
-        current_books = parse_books(current_feed)
+        print("Fetching Goodreads currently-reading shelf...")
+        current_xml = fetch_feed("currently-reading")
 
-        reading_log = build_reading_log(
-            read_books=read_books,
-            current_books=current_books,
-        )
+        read_books = parse_books(read_xml)
+        current_books = parse_books(current_xml)
 
-        update_readme(reading_log)
-
+        print(f"Read shelf entries found: {len(read_books)}")
         print(
-            "Reading log updated successfully. "
-            f"Read shelf entries: {len(read_books)}. "
-            f"Currently-reading entries: {len(current_books)}."
+            "Currently-reading entries found: "
+            f"{len(current_books)}"
         )
+
+        new_section = build_reading_log(
+            read_books,
+            current_books,
+        )
+
+        changed = update_readme(new_section)
+
+        if changed:
+            print("README.md reading log updated.")
+        else:
+            print("README.md already contains the latest data.")
 
         return 0
 
     except Exception as error:
-        print(f"Reading log update failed: {error}", file=sys.stderr)
+        print(
+            f"Reading log update failed: {error}",
+            file=sys.stderr,
+        )
+
         return 1
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
-`
