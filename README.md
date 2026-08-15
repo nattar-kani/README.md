@@ -12,7 +12,7 @@ occasional teacher / compulsive reader
 <pre>
 &gt; currently working on
 
-  data • ai • dashboards • learning
+  data • ai • dashboards • crochet
 
 &gt; currently wondering
 
