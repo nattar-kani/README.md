@@ -226,7 +226,9 @@ def progress_bar(completed: int, goal: int) -> str:
     return " ".join(symbols)
 
 
-def choose_favourite(books: list[Book]) -> Optionalrated_books = [
+def choose_favourite(
+    books: list[Book],
+) -> Optionalrated_books = [
         book
         for book in books
         if book.rating > 0
