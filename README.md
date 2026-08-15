@@ -35,7 +35,7 @@ occasional teacher / compulsive reader
 <!-- READING-LOG:END -->
 
 <p align="center">
-  <a href="https://www.goodreads.com/user/show/192787859-nattarkani-murugan">
+  <a href="[https://www.goodreads.com/user/show/192787859-nattarkani-murugan](https://www.goodreads.com/user/show/192787859-nattarkani-murugan)">
     goodreads ↗
   </a>
 </p>
