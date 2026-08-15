@@ -1,10 +1,22 @@
 <pre align="center">
 ────────────────────────────────────────
 
-hello, i'm nattarkani.
-
-data analyst / aspiring ai engineer
-occasional teacher / compulsive reader
+hello, i'm nattarkani. 
+  
+i work somewhere between data, climate, technology and education. 
+  
+i like turning messy things into useful things — 
+datasets into stories, ideas into things people 
+can actually use, and complicated concepts into 
+something that makes sense. 
+  
+when i'm not doing that, 
+i'm probably reading a book. 
+  
+currently curious about 
+→ data & analytics 
+→ ai & automation 
+→ climate & sustainability 
 
 ────────────────────────────────────────
 </pre>
