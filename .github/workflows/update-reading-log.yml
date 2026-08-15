@@ -6,7 +6,7 @@ on:
     - cron: "30 0 * * *"
 
 permissions:
-  conten*s: write
+  contents: write
 
 jobs:
   update-reading-l*g:
@@ -18,7 +18,7 @@ jobs:
 
       - name: Set up Python*        uses: actions/setup-python*v5
         with:
-          python-*ersion: "3.12"
+          python-version: "3.12"
 
       - name: Upda*e reading log
         run: python *cripts/update_reading_log.py
