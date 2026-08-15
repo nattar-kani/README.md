@@ -24,12 +24,19 @@ occasional teacher / compulsive reader
 ────────────────────────────────────────
 <!-- READING-LOG:START -->
 <pre align="center">
-╭────────────────────────────────────────╮
-│              READING LOG               │
-│                                        │
-│        loading reading data...         │
-│                                        │
-╰────────────────────────────────────────╯
++----------------------------------------+
+|              READING LOG               |
+|                                        |
+|  year             2026                 |
+|  books read       13                   |
+|  pages read       unavailable          |
+|  favourite        A Man Called Ove     |
+|  currently        between books        |
+|                                        |
+|  progress         # # # . . . . . . .  |
+|  goal             13 / 50 books        |
+|                                        |
++----------------------------------------+
 </pre>
 <!-- READING-LOG:END -->
 
